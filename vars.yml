@@ -1,0 +1,24 @@
+
+
+docker_image: ubuntu:16.04
+docker_network: network_B
+
+docker_hosts:
+  - "master"
+  - "attacker1"
+  - "attacker2"
+
+
+system_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - software-properties-common
+  - git
+  - python-pip
+  - python-dev
+  - python-psycopg2
+
+
+
+

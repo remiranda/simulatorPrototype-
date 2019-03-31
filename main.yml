@@ -1,0 +1,68 @@
+- hosts: localhost
+  remote_user: ubuntu
+  become: yes
+  vars_files:
+    - vars.yml
+
+  tasks:
+
+    - name: Install system packages
+      apt:  update_cache=yes
+
+    - name: Install system packages
+      apt: pkg={{ item }} state=present update_cache=yes
+      with_items: "{{ system_packages }}"
+
+    - name: Adding oficial docker GPG key
+      command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg
+
+    - name: Adding oficial docker GPG key
+      apt_key: id=9DC858229FC7DD38854AE2D88D81803C0EBFCD88 url="https://download.docker.com/linux/ubuntu/gpg" state=absent
+
+    - name: Adding docker repository
+      command: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+
+    - name: installing Docker
+      apt: name=docker-ce state=installed update_cache=yes allow_unauthenticated=yes
+
+
+    - name: Install docker Python library
+      pip:
+        name: docker-py
+        state: latest
+
+
+    - name: Create a docker network with options
+      docker_network:
+        name: "{{ docker_network }}"
+        ipam_options:
+          subnet: '10.10.10.0/16'
+          gateway: '10.10.10.1'
+
+
+    - name: Creating the Docker container
+      docker_container:
+        name: "{{ item }}"
+        hostname: "{{ item }}"
+        image: "{{ docker_image }}"
+        network_mode: "{{ docker_network }}"
+        restart_policy: always
+        state: started
+        command: /bin/bash
+        interactive: yes
+      with_items: "{{ docker_hosts }}"
+
+
+    - name: updating apt packages
+      command: docker exec {{ item }} /bin/bash -c  "apt-get update -y; apt-get install iputils-ping -y"
+      with_items: "{{ docker_hosts }}"
+      
+    - name: installing yum
+      command: docker exec {{ item }} /bin/bash -c  "apt-get update -y; apt-get install tcpdump -y"
+      with_items: "{{ docker_hosts }}"
+      when: item == "master"
+      
+    - name: Analyzing the traffic in master
+      command: docker exec {{ item }} /bin/bash -c  "tcpdump -i eth0 -v -c 2 "
+      with_items: "{{ docker_hosts }}"
+      when: item == "master"
