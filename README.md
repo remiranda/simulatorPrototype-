@@ -40,8 +40,11 @@ prerequisite, to have installed ansible
 ###### Read
     sudo tcpdump -r paquetes.dump
 
-
-
+##### Filter records with source and destination IP
+###### To Capture packets from a source IP
+    sudo tcpdump -i eth0 src 192.168.1.1
+###### You can monitor packets from a destination IP
+    sudo tcpdump -i eth0 dst 192.168.1.1
 
 
 
