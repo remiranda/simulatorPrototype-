@@ -1,6 +1,7 @@
 # Simulator Prototype
 
-prerequisite, to have installed ansible
+
+prerequisite, to have installed **Ansible**
 
 ###### $ sudo ansible-playbook main.yml -i host
 ###### $ docker exec -it master /bin/bash
@@ -23,9 +24,10 @@ prerequisite, to have installed ansible
 
 
 
- ###### Limit  the number of packets to capture 
-              sudo tcpdump -c 20.
-              
+###### Limit  the number of packets to capture 
+```
+sudo tcpdump -c 20
+```
               
 ##### Capture only TCP packets
     sudo tcpdump 'tcp'
@@ -48,4 +50,4 @@ prerequisite, to have installed ansible
 
 
 
-###### https://www.tcpdump.org/manpages/tcpdump.1.html
+######  https://www.tcpdump.org/manpages/tcpdump.1.html
