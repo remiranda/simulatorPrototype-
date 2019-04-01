@@ -1,7 +1,7 @@
 # Simulator Prototype
 
 
-prerequisite, to have installed **Ansible**
+Prerequisite, to have installed **Ansible**
 
 ###### $ sudo ansible-playbook main.yml -i host
 ###### $ docker exec -it master /bin/bash
