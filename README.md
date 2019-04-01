@@ -5,8 +5,8 @@ prerequisite, to have installed ansible
 ##### $ docker exec -it master /bin/bash
 ##### $ docker rm -f attacker2 attacker1 master
 
- ###### -c count
-              Exit after receiving count packets.
+ ###### Limit  the number of packets to capture 
+              sudo tcpdump -c 20.
               
               
 ##### Capture only TCP packets
