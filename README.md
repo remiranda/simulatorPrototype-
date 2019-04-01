@@ -14,3 +14,11 @@ prerequisite, to have installed ansible
   
   or   
   ###### sudo tcpdump 'type protocol'
+
+
+##### Save and read files
+###### Save
+    sudo tcpdump -w paquetes.dump
+###### Read
+    sudo tcpdump -r paquetes.dump
+
