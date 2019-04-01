@@ -7,3 +7,10 @@ prerequisite, to have installed ansible
 
  ###### -c count
               Exit after receiving count packets.
+              
+              
+##### Capture only TCP packets
+    sudo tcpdump 'tcp'
+  
+  or   
+  ###### sudo tcpdump 'type protocol'
