@@ -63,6 +63,6 @@
       when: item == "master"
       
     - name: Analyzing the traffic in master
-      command: docker exec {{ item }} /bin/bash -c  "tcpdump -i eth0 -v -c 2 "
+      command: docker exec {{ item }} /bin/bash -c  "tcpdump -i eth0 -vvv -c 100 -w capture.pcap "
       with_items: "{{ docker_hosts }}"
       when: item == "master"
