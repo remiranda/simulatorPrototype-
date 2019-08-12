@@ -63,6 +63,24 @@
       when: item == "master"
       
     - name: Analyzing the traffic in master
-      command: docker exec {{ item }} /bin/bash -c  "tcpdump -i eth0 -vvv -c 100 -w capture.pcap "
+      command: /usr/sbin/tcpdump -i any -s 0 -w /tmp/{{ cap_file }}
+      async: 60
+      poll: 0
       with_items: "{{ docker_hosts }}"
       when: item == "master"
+
+    - pause: minutes=1 prompt="pause for 60 seconds or press Ctrl + c then c to continue"
+    
+    - name: kill tcpdump
+      command: /usr/bin/pkill tcpdump
+    
+    - name: compress capture file
+      command: gzip {{ cap_file }} chdir=/tmp
+    
+    - name: copy logs to local boxes webroot
+      fetch: src=/tmp/{{ cap_file }}.gz dest=/tmp/ flat=yes
+
+    - name: attacker
+      command: docker exec {{ item }} /bin/bash -c  "pin  "
+      with_items: "{{ docker_hosts }}"
+      when: item != "master"
