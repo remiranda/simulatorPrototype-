@@ -54,3 +54,4 @@ sudo tcpdump -c 20
 ######  http://lextoumbourou.github.io/blog/posts/packet-capturing-in-parallel-ansible/
 ######  https://picodotdev.github.io/blog-bitix/2014/11/integracion-entre-ansible-y-docker/
 ######  https://www.linuxito.com/gnu-linux/nivel-medio/1214-mover-archivos-entre-hosts-con-ansible
+######  http://toroid.org/ansible-parallel-dispatch
