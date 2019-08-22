@@ -55,3 +55,5 @@ sudo tcpdump -c 20
 ######  https://picodotdev.github.io/blog-bitix/2014/11/integracion-entre-ansible-y-docker/
 ######  https://www.linuxito.com/gnu-linux/nivel-medio/1214-mover-archivos-entre-hosts-con-ansible
 ######  http://toroid.org/ansible-parallel-dispatch
+######  https://blog.crisp.se/2018/01/27/maxwenzin/how-to-run-ansible-tasks-in-parallel
+######  https://docs.ansible.com/ansible/latest/user_guide/playbooks_delegation.html#rolling-update-batch-size
